@@ -43,7 +43,6 @@ import json
 import logging
 import struct
 import time
-from tkinter import W
 import weakref
 from abc import ABC, abstractmethod
 from collections import namedtuple
