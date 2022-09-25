@@ -393,7 +393,9 @@ class TuyaProtocol(asyncio.Protocol, ContextualLogger):
         def _status_update(msg):
             decoded_message = self._decode_payload(msg.payload)
             if "dps" in decoded_message:
-                self.dps_cache.update(decoded_message["dps"])
+                if "cid" in decoded_message:
+                    if decoded_message["cid"] == self.id:
+                        self.dps_cache.update(decoded_message["dps"])
 
             listener = self.listener and self.listener()
             if listener is not None:
